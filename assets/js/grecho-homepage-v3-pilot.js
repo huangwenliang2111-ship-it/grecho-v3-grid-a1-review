@@ -120,12 +120,17 @@
   var applicationGeometryFrame = 0;
   var applicationGeometryEnd = 0;
   var applicationPointerOrder = '';
+  var applicationAlignRows = applicationGrid && applicationGrid.hasAttribute('data-grid-a02-align');
+  var applicationBodiesNeedSync = true;
 
   function resetApplicationLayout(cards) {
     applicationGrid.classList.remove('is-measured-columns');
     applicationGrid.style.removeProperty('--grecho-v3-application-grid-height');
     cards.forEach(function (card) {
       card.style.removeProperty('--grecho-v3-application-stack-offset');
+      if (applicationAlignRows) {
+        card.querySelector('.grecho-v3-application-card__body').style.removeProperty('min-height');
+      }
     });
     applicationGrid.setAttribute('data-application-layout-state', 'normal-flow');
   }
@@ -139,6 +144,19 @@
     if (!applicationWideViewport.matches || cards.length !== 6) {
       resetApplicationLayout(cards);
       return;
+    }
+
+    // A02 only: equal text rows keep resting image edges aligned without
+    // replacing the existing paired-media hover or its frame-by-frame offsets.
+    if (applicationAlignRows && applicationBodiesNeedSync) {
+      var bodies = cards.map(function (card) { return card.querySelector('.grecho-v3-application-card__body'); });
+      bodies.forEach(function (body) { body.style.removeProperty('min-height'); });
+      [0, 3].forEach(function (start) {
+        var row = bodies.slice(start, start + 3);
+        var height = Math.max.apply(null, row.map(function (body) { return body.getBoundingClientRect().height; }));
+        row.forEach(function (body) { body.style.minHeight = height + 'px'; });
+      });
+      applicationBodiesNeedSync = false;
     }
 
     var styles = window.getComputedStyle(applicationGrid);
@@ -177,6 +195,7 @@
   }
 
   function scheduleApplicationMeasure() {
+    applicationBodiesNeedSync = true;
     if (!applicationGrid || applicationMeasureFrame) {
       return;
     }

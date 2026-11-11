@@ -9,6 +9,7 @@ body.r13-home main :is(#solution-hubs,#diagnostic,#application-examples,#resourc
   max-width:var(--a1-shell-max);
   margin-inline:auto;
 }
+
 body.r13-home main #solution-hubs .grecho-v3-solution-grid,
 body.r13-home main #application-examples .grecho-v3-application-grid { column-gap:32px; }
 body.r13-home main #diagnostic .grecho-v3-diagnostic-grid,
@@ -53,4 +54,77 @@ body.r13-home main #technical-request .grecho-v3-check-card { min-height:0; }
   body.r13-home main :is(#solution-hubs,#diagnostic) .grecho-v3-inline-cta > a { width:100%; }
   body.r13-home main #resource-preview .grecho-v3-resource-intro,
   body.r13-home main #faq-preview .grecho-v3-faq-intro { max-width:none; }
+}
+
+/* Grid A02 owner annotations. These rules remain exclusive to the homepage. */
+body.r13-home #grecho-v3-main .grecho-v3-hero.r13-r3-hero .r13-r3-copy {
+  width:min(760px,72%)!important;max-width:760px!important;
+}
+body.r13-home #grecho-v3-main .grecho-v3-hero.r13-r3-hero .r13-r3-copy h1 {
+  font-size:clamp(64px,calc(44px + 1.666667vw),76px);line-height:1.08;
+  max-width:14ch!important;
+}
+body.r13-home .r13-r3-hero button.r13-owner-video-toggle {
+  display:inline-grid;place-items:center;width:44px;height:44px;min-width:44px;
+  min-height:44px;padding:0;gap:0;border:1px solid #747d82;border-radius:50%;
+  color:#303638;background:#fff;box-shadow:none;
+}
+body.r13-home .r13-r3-hero button.r13-owner-video-toggle[hidden] {display:none;}
+body.r13-home .r13-owner-video-toggle .grecho-v3-hero__media-toggle-icon {font-size:19px;line-height:1;}
+body.r13-home .a2-video-control-label {
+  position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip-path:inset(50%);white-space:nowrap;border:0;
+}
+body.r13-home main #diagnostic .a2-diagnostic-layout {
+  display:grid;grid-template-columns:minmax(0,.72fr) minmax(0,1.58fr);
+  column-gap:clamp(44px,4vw,80px);align-items:start;
+}
+body.r13-home main #diagnostic .a2-diagnostic-layout>.grecho-v3-section-head {
+  width:100%;max-width:420px;text-align:left;margin:0;
+}
+body.r13-home main #diagnostic .a2-diagnostic-layout>.grecho-v3-section-head>p {margin-inline:0;max-width:42ch;}
+body.r13-home main #diagnostic .grecho-v3-diagnostic-grid {
+  max-width:none;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 32px;
+}
+body.r13-home main #diagnostic .grecho-v3-diagnostic-card {min-width:0;}
+body.r13-home main #diagnostic .grecho-v3-diagnostic-card:is(:hover,:focus,:focus-visible),
+body.r13-home main #diagnostic .grecho-v3-diagnostic-card {transform:none;}
+body.r13-home main #diagnostic .grecho-v3-diagnostic-card:is(:hover,:focus,:focus-visible) .r13-r4-icon,
+body.r13-home main #diagnostic .grecho-v3-diagnostic-card .r13-r4-icon {
+  color:#303638;background:transparent;transform:none;transition:none;filter:none;box-shadow:none;
+}
+body.r13-home main #diagnostic .grecho-v3-diagnostic-card .r13-r4-icon>svg {transform:none;transition:none;}
+body.r13-home main #technical-request .grecho-v3-request-layout {max-width:none;}
+body.r13-home main #technical-request .grecho-v3-request-checklist>p,
+body.r13-home main #technical-request .grecho-v3-request-checklist>h3 {max-width:64ch;}
+body.r13-home main #technical-request .grecho-v3-support-card p {max-width:52ch;}
+body.r13-home main #application-examples .grecho-v3-application-card__body>.r13-r4-textlink {
+  margin-top:auto;padding-top:24px;
+}
+body.r13-home .a2-heading-line {display:block;}
+@media(min-width:1100px){body.r13-home .a2-application-title-line {display:block;}}
+body.r13-home footer.grecho-v3-footer {background:#eee!important;color:#303638;}
+body.r13-home footer.grecho-v3-footer>.grecho-v3-container {
+  width:calc(100% - 2 * var(--a1-inset));max-width:var(--a1-shell-max);margin-inline:auto;
+}
+body.r13-home .grecho-v3-footer-grid {grid-template-columns:minmax(0,1.7fr) repeat(3,minmax(0,1fr));gap:48px;}
+body.r13-home .grecho-v3-footer-brand>p {max-width:46ch;}
+body.r13-home footer.grecho-v3-footer :is(h2,p,a,.grecho-v3-footer-contact>span) {color:#303638;}
+body.r13-home footer.grecho-v3-footer a:is(:hover,:focus-visible) {color:#1b4aa1;}
+body.r13-home .grecho-v3-footer-grid .grecho-v3-social-links a {border-color:#8f969a;}
+body.r13-home .grecho-v3-footer-bottom {color:#4e575c;border-top-color:#b8bec2;}
+@media(max-width:1099px) {
+  body.r13-home #grecho-v3-main .grecho-v3-hero.r13-r3-hero .r13-r3-copy {width:78%!important;}
+  body.r13-home #grecho-v3-main .grecho-v3-hero.r13-r3-hero .r13-r3-copy h1 {font-size:56px;}
+  body.r13-home main #diagnostic .a2-diagnostic-layout {grid-template-columns:minmax(0,1fr);gap:36px;}
+  body.r13-home main #diagnostic .a2-diagnostic-layout>.grecho-v3-section-head {max-width:680px;}
+  body.r13-home main #diagnostic .a2-diagnostic-layout>.grecho-v3-section-head>p {max-width:64ch;}
+  body.r13-home .grecho-v3-footer-grid {grid-template-columns:repeat(2,minmax(0,1fr));gap:36px;}
+}
+@media(max-width:850px){body.r13-home .a2-heading-line {display:inline;}}
+@media(max-width:767px) {
+  body.r13-home #grecho-v3-main .grecho-v3-hero.r13-r3-hero .r13-r3-copy {width:100%!important;}
+  body.r13-home #grecho-v3-main .grecho-v3-hero.r13-r3-hero .r13-r3-copy h1 {font-size:38px;max-width:15ch!important;}
+  body.r13-home main #diagnostic .grecho-v3-diagnostic-grid {grid-template-columns:minmax(0,1fr);gap:24px;}
+  body.r13-home .grecho-v3-footer-grid {grid-template-columns:minmax(0,1fr);gap:28px;}
 }
