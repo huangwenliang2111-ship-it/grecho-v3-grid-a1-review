@@ -1,0 +1,56 @@
+/* Grid A01: homepage editorial shells only. Keep inherited type, media,
+   vertical section rhythm and all Solution information/interaction rules. */
+body.r13-home { --a1-inset:80px; --a1-shell-max:1500px; --a1-reading-max:1120px; }
+@media (max-width:1099px) { body.r13-home { --a1-inset:36px; } }
+@media (max-width:767px) { body.r13-home { --a1-inset:20px; } }
+
+body.r13-home main :is(#solution-hubs,#diagnostic,#application-examples,#resource-preview,#faq-preview,#technical-request) > .grecho-v3-container {
+  width:calc(100% - 2 * var(--a1-inset));
+  max-width:var(--a1-shell-max);
+  margin-inline:auto;
+}
+body.r13-home main #solution-hubs .grecho-v3-solution-grid,
+body.r13-home main #application-examples .grecho-v3-application-grid { column-gap:32px; }
+body.r13-home main #diagnostic .grecho-v3-diagnostic-grid,
+body.r13-home main #technical-request .grecho-v3-request-layout {
+  width:100%;max-width:var(--a1-reading-max);margin-inline:auto;
+}
+body.r13-home main :is(#solution-hubs,#diagnostic) .grecho-v3-inline-cta {
+  width:100%;max-width:var(--a1-reading-max);margin-inline:auto;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  padding:22px 24px;border:0;border-radius:0;
+}
+body.r13-home main :is(#solution-hubs,#diagnostic) .grecho-v3-inline-cta > div { min-width:0;max-width:72ch; }
+body.r13-home main :is(#solution-hubs,#diagnostic) .grecho-v3-inline-cta > a { flex-shrink:0; }
+
+/* Let the photograph meet a quiet white text area. Retain the inherited
+   28px / 22px body padding and the paired hover measurements. */
+body.r13-home main #application-examples .grecho-v3-application-card__body { margin-top:0;border:0; }
+body.r13-home main #diagnostic .grecho-v3-diagnostic-card,
+body.r13-home main #resource-preview .grecho-v3-resource-card { border-radius:0!important; }
+body.r13-home main #resource-preview .grecho-v3-resource-panel,
+body.r13-home main #faq-preview .grecho-v3-faq-layout { column-gap:clamp(40px,4vw,80px); }
+body.r13-home main #resource-preview .grecho-v3-resource-intro,
+body.r13-home main #faq-preview .grecho-v3-faq-intro { max-width:420px;text-align:left; }
+body.r13-home main #resource-preview .grecho-v3-resource-grid { width:100%;max-width:800px;justify-self:end; }
+body.r13-home main #faq-preview .grecho-v3-faq { width:100%;max-width:780px;justify-self:end; }
+body.r13-home main #faq-preview .grecho-v3-faq-item { border:0;border-bottom:1px solid #d9dddf;border-radius:0;box-shadow:none; }
+body.r13-home main #faq-preview .grecho-v3-faq-note { border:0;border-radius:0;background:#f4f5f5; }
+body.r13-home main #faq-preview .grecho-v3-faq-panel p { max-width:75ch; }
+body.r13-home main #technical-request :is(.grecho-v3-check-card,.grecho-v3-support-card) {
+  border:0;border-top:1px solid #d9dddf;border-radius:0;box-shadow:none;background:transparent;
+}
+body.r13-home main #technical-request .grecho-v3-check-card { min-height:0; }
+
+@media (max-width:1099px) {
+  body.r13-home main #solution-hubs .grecho-v3-solution-grid,
+  body.r13-home main #application-examples .grecho-v3-application-grid { column-gap:24px; }
+}
+@media (max-width:767px) {
+  body.r13-home main :is(#solution-hubs,#diagnostic) .grecho-v3-inline-cta {
+    flex-direction:column;align-items:stretch;gap:16px;padding:22px;
+  }
+  body.r13-home main :is(#solution-hubs,#diagnostic) .grecho-v3-inline-cta > a { width:100%; }
+  body.r13-home main #resource-preview .grecho-v3-resource-intro,
+  body.r13-home main #faq-preview .grecho-v3-faq-intro { max-width:none; }
+}
