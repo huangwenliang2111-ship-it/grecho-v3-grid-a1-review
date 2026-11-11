@@ -24,9 +24,9 @@ body.r13-home main :is(#solution-hubs,#diagnostic) .grecho-v3-inline-cta {
 body.r13-home main :is(#solution-hubs,#diagnostic) .grecho-v3-inline-cta > div { min-width:0;max-width:72ch; }
 body.r13-home main :is(#solution-hubs,#diagnostic) .grecho-v3-inline-cta > a { flex-shrink:0; }
 
-/* Let the photograph meet a quiet white text area. Retain the inherited
-   28px / 22px body padding and the paired hover measurements. */
-body.r13-home main #application-examples .grecho-v3-application-card__body { margin-top:0;border:0; }
+/* Align Application text with its photograph while retaining vertical spacing
+   and the existing paired hover measurements. */
+body.r13-home main #application-examples .grecho-v3-application-card__body { margin-top:0;border:0;padding-inline:0; }
 body.r13-home main #diagnostic .grecho-v3-diagnostic-card,
 body.r13-home main #resource-preview .grecho-v3-resource-card { border-radius:0!important; }
 body.r13-home main #resource-preview .grecho-v3-resource-panel,
@@ -127,4 +127,21 @@ body.r13-home .grecho-v3-footer-bottom {color:#4e575c;border-top-color:#b8bec2;}
   body.r13-home #grecho-v3-main .grecho-v3-hero.r13-r3-hero .r13-r3-copy h1 {font-size:38px;max-width:15ch!important;}
   body.r13-home main #diagnostic .grecho-v3-diagnostic-grid {grid-template-columns:minmax(0,1fr);gap:24px;}
   body.r13-home .grecho-v3-footer-grid {grid-template-columns:minmax(0,1fr);gap:28px;}
+}
+
+/* Grid A03: intrinsic-height checks allow these groups to use the established
+   header offset only while their own side-by-side composition has room. */
+body.r13-home main #diagnostic .a2-diagnostic-layout>.grecho-v3-section-head,
+body.r13-home main #resource-preview .grecho-v3-resource-intro {
+  position:static;align-self:start;
+}
+@media(min-width:1100px) {
+  body.r13-home .grecho-v3.has-sticky-header-offset #diagnostic .a2-diagnostic-layout>.grecho-v3-section-head[data-grid-a03-sticky="enabled"] {
+    position:sticky;top:var(--grecho-v3-sticky-header-offset);
+  }
+}
+@media(min-width:851px) {
+  body.r13-home .grecho-v3.has-sticky-header-offset #resource-preview .grecho-v3-resource-intro[data-grid-a03-sticky="enabled"] {
+    position:sticky;top:var(--grecho-v3-sticky-header-offset);
+  }
 }

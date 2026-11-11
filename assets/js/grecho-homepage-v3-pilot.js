@@ -113,6 +113,63 @@
   }
   window.addEventListener('resize', syncHeroMedia, { passive: true });
 
+  // CSS sticky supplies section boundaries. Intrinsic text height still needs
+  // measurement so enlarged text can return to normal flow without clipping.
+  var editorialStickyGroups = [
+    {
+      intro: root.querySelector('#diagnostic .a2-diagnostic-layout > .grecho-v3-section-head'),
+      content: root.querySelector('#diagnostic .grecho-v3-diagnostic-grid'),
+      minimumWidth: 1100
+    },
+    {
+      intro: root.querySelector('#resource-preview .grecho-v3-resource-intro'),
+      content: root.querySelector('#resource-preview .grecho-v3-resource-grid'),
+      minimumWidth: 851
+    }
+  ];
+  var editorialStickyHeader = document.querySelector('[data-grecho-v3-nav]');
+  var editorialStickyFrame = 0;
+
+  function measureEditorialStickyFit() {
+    editorialStickyFrame = 0;
+    var offset = parseFloat(window.getComputedStyle(root).getPropertyValue('--grecho-v3-sticky-header-offset')) || 0;
+    var headerHeight = editorialStickyHeader ? editorialStickyHeader.getBoundingClientRect().height : 0;
+    var availableHeight = window.innerHeight - Math.max(offset, headerHeight + 16) - 16;
+
+    editorialStickyGroups.forEach(function (group) {
+      if (!group.intro || !group.content) {
+        return;
+      }
+      var introRect = group.intro.getBoundingClientRect();
+      var contentRect = group.content.getBoundingClientRect();
+      var state = 'enabled';
+      if (window.innerWidth < group.minimumWidth || introRect.right > contentRect.left + 1) {
+        state = 'stacked';
+      } else if (introRect.height > availableHeight) {
+        state = 'insufficient-height';
+      } else if (contentRect.height - introRect.height <= 1) {
+        state = 'no-travel';
+      }
+      group.intro.setAttribute('data-grid-a03-sticky', state);
+    });
+  }
+
+  function scheduleEditorialStickyMeasure() {
+    if (!editorialStickyFrame) {
+      editorialStickyFrame = window.requestAnimationFrame(measureEditorialStickyFit);
+    }
+  }
+
+  if (typeof ResizeObserver === 'function') {
+    var editorialStickyObserver = new ResizeObserver(scheduleEditorialStickyMeasure);
+    editorialStickyGroups.forEach(function (group) {
+      if (group.intro) {
+        editorialStickyObserver.observe(group.intro);
+      }
+    });
+  }
+  scheduleEditorialStickyMeasure();
+
   var applicationGrid = root.querySelector('.grecho-v3-application-grid');
   var applicationWideViewport = window.matchMedia('(min-width: 851px)');
   var applicationPointerViewport = window.matchMedia('(min-width: 851px) and (hover: hover) and (pointer: fine)');
@@ -195,6 +252,7 @@
   }
 
   function scheduleApplicationMeasure() {
+    scheduleEditorialStickyMeasure();
     applicationBodiesNeedSync = true;
     if (!applicationGrid || applicationMeasureFrame) {
       return;
