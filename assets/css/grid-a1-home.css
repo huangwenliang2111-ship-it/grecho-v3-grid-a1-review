@@ -94,6 +94,9 @@ body.r13-home main #diagnostic .grecho-v3-diagnostic-card .r13-r4-icon {
   color:#303638;background:transparent;transform:none;transition:none;filter:none;box-shadow:none;
 }
 body.r13-home main #diagnostic .grecho-v3-diagnostic-card .r13-r4-icon>svg {transform:none;transition:none;}
+body.r13-home main #resource-preview .grecho-v3-resource-card:is(:hover,:focus-within) > .grecho-v3-resource-card__icon {
+  color:#303638;background:transparent;
+}
 body.r13-home main #technical-request .grecho-v3-request-layout {max-width:none;}
 body.r13-home main #technical-request .grecho-v3-request-checklist>p,
 body.r13-home main #technical-request .grecho-v3-request-checklist>h3 {max-width:64ch;}
